@@ -6,4 +6,4 @@ game.js - game engine
 view.js- graphic ui
 
 
-<img src="http://tetris.idiod.me/tetris.png"/>
+<img src="http://tetris.idiod.me/tetris.jpg"/>

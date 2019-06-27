@@ -1,4 +1,17 @@
 export default class View {
+    //  FLAT UI AMERICAN PALETTE https://flatuicolors.com/palette/us
+    static colors = {
+
+        '1' : "#0984e3", //ELECTRON BLUE COLOR 
+        '2' : "#fd79a8", //PICO-PICE
+        '3' : "#fdcb6e", //Bright Yarrow
+        '4' : "#e66767", //CHI-GONG
+        '5' : "#00b894", //MINT LEAF
+        '6' : "#ffeaa7", //SOURE LEMON
+        '7' : "#e17055", //ORANGEVILLE
+      
+
+    };
     constructor(element, width, height, rows, columns) {
         this.element = element;
         this.width = width;
@@ -18,19 +31,20 @@ export default class View {
         this.element.appendChild(this.canvas);
     }
     // Отрисовка поля создаем метод
-    clearScreen() {
-        this.context.clearRect(0, 0, this.width, this.height);
-
-    }
-    render({
-        playfield
-    }) {
+    render({ playfield }) {
         this.clearScreen();
         this.renderPlayfield(playfield);
 
     }
+    // Чистим экран
+    clearScreen() {
 
+        this.context.clearRect(0, 0, this.width, this.height);
+
+    }
  
+
+
     renderPlayfield(playfield) {
         for (let y = 0; y < playfield.length; y++) {
             const line = playfield[y];
@@ -39,14 +53,10 @@ export default class View {
                 const block = line[x];
 
                 if (block) {
-      this.renderBlock(x * this.blockWidth, y * this.blockHeight, this.blockWidth, this.blockHeight,  '#cf6a87');
+                    this.renderBlock(x * this.blockWidth, y * this.blockHeight, this.blockWidth, this.blockHeight, View.colors[block]);
+                }
             }
         }
-
-        
-
-    } 
-
     }
 
     renderBlock(x, y, width, height, color) {
@@ -54,7 +64,7 @@ export default class View {
         this.context.strokeStyle = '#303952';
         this.context.lineWidth = 2;
 
-        this.context.fillRect(x, y,  width, height);
+        this.context.fillRect(x, y, width, height);
         this.context.strokeRect(x, y, width, height);
     }
 }

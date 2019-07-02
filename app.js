@@ -10,6 +10,13 @@ const view = new View(tetris, 320, 640, 20, 10);
 window.game = game;
 window.view = view;
 
+// const music = new Audio();
+// const pop = new Audio();
+
+// music.src = "./src/music.ogg"
+// pop.src = "./src/pop.ogg"
+ 
+
 view.renderPlayfield(game.getState());
 document.addEventListener('keydown', (e) =>   {
     switch (e.keyCode) {
@@ -31,6 +38,6 @@ document.addEventListener('keydown', (e) =>   {
             break;
     }
 });
-
+// music.play();
 
 // console.log(game);

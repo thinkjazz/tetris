@@ -1,13 +1,25 @@
 export default class Game {
 
+    static points = {
+        '1' : 50, 
+        '2' : 100, 
+        '3' : 500, 
+        '4' : 1000,
+
+    }; 
+
     scores = 0;
     lines = 0;
-    level = 0;
+ 
     playfield = this.createPlayfield();
 
     activePiece = this.createPiece();
     nextPiece = this.createPiece();
- 
+
+   get level() {
+    return Math.floor(this.lines * 0.1);
+   }
+
  
     getState() {
         const playfield =  this.createPlayfield();
@@ -145,13 +157,18 @@ export default class Game {
     }
 
     movePieceDown() {
+        const pop = new Audio();
+        pop.src = "./src/pop.ogg"
+    
         this.activePiece.y += 1;
         if (this.hasCollision()) {
             this.activePiece.y -= 1;
             this.lockPiece();
+        const clearLines =  this.clearLines();
+            this.updateScore(clearLines);
             this.updatePieces();
         }
-
+        pop.play();
     }
 
     rotatePeace() {
@@ -161,6 +178,9 @@ export default class Game {
         }       
     }
     rotateBlock(clockwise = true){
+        const pop = new Audio();
+        pop.src = "./src/pop.ogg"
+ 
         const blocks = this.activePiece.blocks;
         const length  = blocks.length;
   
@@ -184,6 +204,7 @@ export default class Game {
                }
             }   
         }
+        pop.play();
     }
 
     hasCollision() {
@@ -224,7 +245,51 @@ export default class Game {
         }
     }
    
-    updatePieces(){
+    clearLines() {
+        const rows = 20;
+        const columns = 10;
+        let lines =[];
+
+        for (let y = rows - 1; y >= 0; y--) {
+            let numberOfBlocks = 0;
+
+            for (let x = 0; x < columns; x++) {
+                if (this.playfield[y][x]) {
+                    numberOfBlocks += 1;
+                }
+            }
+
+            if (numberOfBlocks === 0) {
+                break; 
+            } else if (numberOfBlocks < columns) {
+                continue;
+            } else if (numberOfBlocks === columns) {
+                lines.unshift(y);
+            }
+        }
+        for (const index of lines) {
+
+            this.playfield.splice(index, 1);
+            this.playfield.unshift(new Array(columns).fill(0));
+
+        }
+        return lines.length;
+    }
+
+    updateScore(clearedLines) {
+        console.log(this.level);
+        
+        if (clearedLines > 0) {
+            this.scores += Game.points[clearedLines] * (this.level + 1);
+            this.lines  += clearedLines; 
+            console.log(this.scores, this.lines, this.level);
+            
+        }
+
+    }
+
+
+    updatePieces() {
         this.activePiece = this.nextPiece;
         this.nextPiece = this.createPiece();
     }

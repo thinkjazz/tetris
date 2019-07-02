@@ -16,5 +16,5 @@ body {
 #tetris canvas {
     display: block;
     margin: 0 auto;
-    border: 4px solid wheat;
+    border: 4px solid #f5cd79;
 }

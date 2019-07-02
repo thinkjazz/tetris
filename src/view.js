@@ -2,13 +2,13 @@ export default class View {
     //  FLAT UI AMERICAN PALETTE https://flatuicolors.com/palette/us
     static colors = {
 
-        '1' : "#0984e3", //ELECTRON BLUE COLOR 
-        '2' : "#fd79a8", //PICO-PICE
-        '3' : "#fdcb6e", //Bright Yarrow
-        '4' : "#e66767", //CHI-GONG
-        '5' : "#00b894", //MINT LEAF
-        '6' : "#ffeaa7", //SOURE LEMON
-        '7' : "#e17055", //ORANGEVILLE
+        '1' : "#546de5", //ELECTRON BLUE COLOR 
+        '2' : "#e66767", //PICO-PICE
+        '3' : "#33d9b2", //Bright Yarrow
+        '4' : "#f5cd79", //CHI-GONG
+        '5' : "#ea8685", //MINT LEAF
+        '6' : "#63cdda", //PINK
+        '7' : "#f78fb3", //ORANGEVILLE
       
 
     };

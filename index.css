@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #303952;
+    background-color: #1c1d1d;
 }
 
 #tetris {
@@ -16,5 +16,5 @@ body {
 #tetris canvas {
     display: block;
     margin: 0 auto;
-    border: 4px solid #f5cd79;
+    /* border: 4px solid #f5cd79; */
 }

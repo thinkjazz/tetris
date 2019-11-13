@@ -74,7 +74,7 @@ export default class View {
         this.context.fillText('Press ENTER to Resume', this.width / 2, this.height / 2);
     }
 
-    renderGameOverScreen() {
+    renderGameOverScreen({ score }) {
         this.clearScreen();
 
         this.context.fillStyle = 'white';
@@ -82,7 +82,8 @@ export default class View {
         this.context.textAlign = 'center';
         this.context.textBaseline = 'middle';
         this.context.fillText('GAME OVER', this.width / 2, this.height / 2 - 48);
-        this.context.fillText(`Scores: ${scores}`, this.width / 2, this.height / 2);
+        this.context.fillText(`Score: ${score}`, this.width / 2, this.height / 2);
+        this.context.fillText(`Press ENTER to restart`, this.width / 2, this.height / 2 + 48);
     }
 
     // Чистим экран
@@ -118,12 +119,12 @@ export default class View {
 
     }
     // Создание панели с рендером надписей уровень линии следующая фигура итд
-    renderPanel({ level, scores, lines, nextPiece }){
+    renderPanel({ level, score, lines, nextPiece }){
         this.context.textAlign = 'start';
         this.context.textBaseline = 'top';
         this.context.fillStyle = 'white';
         this.context.font = '14px "Press Start 2P"';
-        this.context.fillText(`Score: ${scores}`, this.panelX, this.panelY +  0);
+        this.context.fillText(`Score: ${score}`, this.panelX, this.panelY +  0);
         this.context.fillText(`Lines: ${lines}`,  this.panelX, this.panelY + 24);
         this.context.fillText(`Level: ${level}`,  this.panelX, this.panelY + 48);
         this.context.fillText("Next:",  this.panelX, this.panelY + 96);

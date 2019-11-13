@@ -1,15 +1,17 @@
 "use strict";
 import Game from './src/game.js';
 import View from './src/view.js';
+import Controller from './src/controller.js';
 
 const tetris = document.querySelector('#tetris');
 
 const game = new Game();
 const view = new View(tetris, 480, 640, 20, 10);
+const controller = new Controller(game, view);
 
 window.game = game;
 window.view = view;
-
+window.controller = controller;
 // const music = new Audio();
 // const pop = new Audio();
 
@@ -17,27 +19,9 @@ window.view = view;
 // pop.src = "./src/pop.ogg"
  
 
-view.renderPlayfield(game.getState());
-document.addEventListener('keydown', (e) =>   {
-    switch (e.keyCode) {
-            case 37: // Left arrow keyboard
-            game.movePieceLeft();
-            view.render(game.getState());
-            break;
-            case 39: //Right key arrow keyboard
-            game.movePieceRight();
-            view.render(game.getState());
-            break;
-            case 38: // Up key arrow keyboard
-            game.rotatePeace();
-            view.render(game.getState());
-            break;
-            case 40: //Down key arrow keyboard
-            game.movePieceDown();
-            view.render(game.getState());
-            break;
-    }
-});
 // music.play();
 
 // console.log(game);
+// view.render(game.getState());
+
+// view.renderPlayfield(game.getState());
